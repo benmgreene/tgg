@@ -661,8 +661,10 @@
         this.clear();
         this.iteration = 0;
         for (var i in vectors) {
-            this.create_dice(vectors[i].set, vectors[i].pos, vectors[i].velocity,
+            if (typeof vectors[i].set === 'string') {
+                this.create_dice(vectors[i].set, vectors[i].pos, vectors[i].velocity,
                     vectors[i].angle, vectors[i].axis);
+            }
         }
     }
 

@@ -725,10 +725,14 @@
 
     this.dice_box.prototype.search_dice_by_mouse = function(ev) {
         var m = $t.get_mouse_coords(ev);
+        console.log(`this.cw: ${this.cw}; this.aspect: ${this.aspect}; this.ch: ${this.ch}; this.w: ${this.w}`);
         var intersects = (new THREE.Raycaster(this.camera.position, 
                     (new THREE.Vector3((m.x - this.cw) / this.aspect,
                                        1 - (m.y - this.ch) / this.aspect, this.w / 9))
                     .sub(this.camera.position).normalize())).intersectObjects(this.dices);
+        
+        console.log(ev, m, this.dices, intersects);
+
         if (intersects.length) return intersects[0].object.userData;
     }
 

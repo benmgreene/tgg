@@ -379,7 +379,7 @@
         return notation;
     }
 
-    var that = this;
+    window.that = this;
 
     this.dice_box = function(container, dimentions) {
         this.use_adapvite_timestep = true;

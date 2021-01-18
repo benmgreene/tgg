@@ -1970,13 +1970,13 @@
       $t.dice.label_color = '#202020';
     }
 
-    var box = new $t.dice.dice_box(canvas, { w: 500, h: 300 });
+    var box = new $t.dice.dice_box(canvas, { w: 500, h: 300 * (diceContainer.offsetHeight / diceContainer.offsetWidth) });
     box.animate_selector = false;
 
     $t.bind(diceContainer, 'resize', function() {
       canvas.style.width = diceContainer.offsetWidth - 1 + 'px';
       canvas.style.height = diceContainer.offsetHeight - 1 + 'px';
-      box.reinit(canvas, { w: 500, h: 300 });
+      box.reinit(canvas, { w: 500, h: 300 * (diceContainer.offsetHeight / diceContainer.offsetWidth) });
     });
 
     function show_selector() {
@@ -2112,9 +2112,24 @@
     border: solid black 1px;
   }
 
+  @media screen and (max-width: 991px) {
+    #diceContainer {
+      margin: 0%;
+      width: 100%;
+      height: 80%;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    #diceContainer {
+      margin: 0%;
+      width: 100%;
+      height: 500px;
+    }
+  }
+
 </style>
 
-<div id="diceContainer" style="margin: 0%; width: 100%; height: 500px">
+<div id="diceContainer">
   <div id="control_panel" class="control_panel">
     <p id="loading_text">Loading libraries, please wait a bit...</p>
   </div>
@@ -2126,8 +2141,7 @@
 <div id="selector_div" style="display: none">
   <div class="center_field">
     <div id="sethelp">
-      choose your dice set by clicking the dices or by direct input of notation,<br/>
-      tap and drag on free space of screen or hit throw button to roll
+      Chose the dice you need by clicking on them and then click throw.<br/>Click on the completed roll to start again.
     </div>
   </div>
   <div class="center_field">
